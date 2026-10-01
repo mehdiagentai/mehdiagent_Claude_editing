@@ -1,0 +1,14 @@
+# secrets - API keys live in ~/.mehdiagent/.env, never in this repo
+.env
+*.env
+.env.*
+# build / OS noise
+__pycache__/
+*.pyc
+.DS_Store
+skills/reel-dark/template/helpers/personmask
+# media produced while testing
+*.mkv
+renders/
+review/
+edit/
