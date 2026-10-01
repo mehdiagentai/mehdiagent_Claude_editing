@@ -1,7 +1,9 @@
 """Example reel (Moroccan Darija, Arabic RTL captions): "stop agonising over which campaign to cut - Claude reads your Ads Manager data".
 Dark mode. Every timestamp is local to the beat; landings come from at(beat, word). Recreated UI only.
 The AI stays the "?" tile until "Claude" is spoken (claude beat), then flips to the real Claude tile (rule 19).
-Demo account = the demo_brand setting. No numbers on screen except the spoken "3" (test beat)."""
+Demo account = the demo_brand setting. No numbers on screen except the spoken "3" (test beat).
+HOOK NOTE: the scythe hook fits THIS video's opening ("...whether to cut a campaign"). Never reuse it by default:
+design each reel's hook from its own opening line (~/.claude/skills/mehdiagent/references/hooks.md)."""
 from draw import *
 import sys,numpy as np
 sys.path.insert(0,str(P/'helpers'))

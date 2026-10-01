@@ -80,6 +80,8 @@ Wait for "done", then verify: `python3 $M/fish_audio.py` or `python3 $M/transcri
   `references/workflow-single-video.md`). Flag every word you were unsure of when you deliver.
 
 ## Rules that hold for every reel
+- **A new hook for every video**, designed from what its opening line says (`references/hooks.md`); check
+  `scripts/hooks.py recent` first and record the hook after delivery. Say which hook you chose and why.
 - Never cut or reorder the creator's words unless they asked (precut footage).
 - Background removal on → no pixel of their room may show; check sampled frames before delivering.
 - Report honestly: checks are signal/frame based — you cannot listen.

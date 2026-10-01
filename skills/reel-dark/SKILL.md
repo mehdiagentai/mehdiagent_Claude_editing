@@ -43,7 +43,7 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
 
 ## Building the reel (both paths)
 
-- **Beat map first.** One row per spoken beat: mode (full/split), surface, action, payoff. ~10–13 beats per 30–35 s,
+- **Beat map first.** Start with the hook (`hooks.md`). One row per spoken beat: mode (full/split), surface, action, payoff. ~10–13 beats per 30–35 s,
   alternate full screen and split (graphics top, creator bottom) at meaningful lines: full for the hook, hero object,
   numbers, real pages, the reveal; the face for reactions, the name and the CTA. Build an arc: mystery ("?" tile) →
   tease → reveal (tile flips on the name) → proof → honest caveat → fix → CTA. Mark 1–3 *feeling* lines for a meme
@@ -62,9 +62,12 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
 
 ## Scene recipes (build them in `scenes.py`; `template/simple/scenes_example.py` shows most of them working)
 
-- **Physical hook:** the hero tile (the "?" until named) does something to the target on stressed words — a scythe
-  splitting cards (`props.scythe` + `props.split_halves`, as in the example), a projectile firing at a rival's
-  official icon, a tile crushing/eating/unplugging another. One hit per stressed word, the last hit breaks it.
+- **Hook (different for every video):** read `~/.claude/skills/mehdiagent/references/hooks.md`, pick the archetype that
+  matches what THIS video's opening line says (destroy, replace, counter, race, reveal, callout, question, lineup,
+  transform, number, headline, payoff-first), check `hooks.py recent` so it doesn't repeat the last reels, and record it
+  after delivery. The scythe in `scenes_example.py` was that one video's hook — never a default. Building blocks:
+  `props.scythe` + `props.split_halves` (slice), shards under gravity (break), projectiles, drops with squash, split-flap
+  counters, race tracks, lenses/cups (reveal).
 - **Real page → push-in → count-up → highlighter:** rebuild the page from its live copy, camera push-in, the spoken
   number counts up and lands with a frame, a yellow highlighter sweeps the exact row, cursor on the tip.
 - **App rebuilds:** Ads Manager tables, Business Manager, Instagram comments + DM banner (`helpers/instagram_comment`),
@@ -81,8 +84,10 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
    products in their own dark theme. Use the tokens in `draw.py`; see `style.md`.
    Check every preview sheet for dark-on-dark elements.
 1. Recreate UI; never screenshot. Real icons, Apple chrome, product-true colours and copy.
-2. The hook is no-face and physical, big (tiles ≥ 280 px, cards ≥ 600 px wide), something moving on frame 0. If the
-   creator describes a hook, build exactly that.
+2. **The hook is built for each video** from its own opening line (`mehdiagent/references/hooks.md`) — never the same
+   hook as the last reels, never copied from an example. It is no-face and physical, big (tiles ≥ 280 px, cards ≥ 600 px
+   wide), moving on frame 0, landing on the spoken words. If the creator describes a hook, build exactly that. Tell the
+   creator in one line which hook you chose and why.
 3. Caption click sound on the first and last word of every full-screen caption group; presenter chips stay silent.
 4. Full-screen beats: UI in the upper area, cinematic words centred around scene y≈980–1150, nothing below. Graphics
    are shifted down `TOP_SHIFT=90` and faded above screen y 180 (`render.fade_top`) — Instagram covers the top.
