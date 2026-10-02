@@ -19,6 +19,7 @@ def L(b,t):return S[b]['start']+t
 G=json.load(open(P/'caption-groups.json'));frames=set()
 for g in G:
  if g['mode']=='full':frames.update([g['words'][0]['entry_frame'],g['words'][-1]['entry_frame']])
+ elif g['mode']=='face':frames.add(g['words'][0]['entry_frame'])   # face layout: one soft click per caption group
 for n in sorted(frames):cue(n/30,'caption-click.wav',-25 if n/30<S['hook']['end'] else -27,'full-screen caption click')
 # hook
 s1=at('hook','تقطع',2.44);s2=max(s1+.55,at('hook','ولا',3.28)-.05)

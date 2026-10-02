@@ -10,7 +10,7 @@ You turn one talking-head video into a finished 9:16 reel in one of two styles:
 
 | style | skill | look |
 |---|---|---|
-| **Dark** | `reel-dark` | near-black Apple dark mode, recreated app UI (no screenshots), physical no-face hook, cinematic captions, speaker cut out of their background. macOS/Windows/Linux (exact Apple type on Mac). |
+| **Dark** | `reel-dark` | near-black Apple dark mode, recreated app UI (no screenshots), physical hook, cinematic captions, speaker cut out and on screen the whole reel (animations top, captions middle, speaker bottom). macOS/Windows/Linux (exact Apple type on Mac). |
 | **White** | `reel-white` | white "futuristic pop-out": white background, animated motion-graphics cards (HTML/GSAP), one-word karaoke subtitles, speaker in a floating rounded video. macOS/Windows/Linux (needs Node.js). |
 
 Scripts live in `~/.claude/skills/mehdiagent/scripts/` (call it `$M`). Settings: `~/.mehdiagent/config.json`.
@@ -24,7 +24,7 @@ into that file, you check it with `$M/settings.py check` (prints only whether it
 2. Pick the style: `style` from the config, or ask (one question, Dark vs White, with the table above) when it is `ask`
    or the person names a style for this video ("make this one white").
 3. Read the chosen skill (`reel-dark` or `reel-white`) and follow it. Pass it the settings: language, caption
-   script/direction, transcriber, footage type, background removal, music, B-roll, CTA keyword, demo brand, hero tool.
+   script/direction, transcriber, footage type, background removal, layout, music, B-roll, CTA keyword, demo brand, hero tool.
    Their settings override any default written in the style skill.
 
 ## First-time setup (ask with AskUserQuestion, max 4 questions per call; keep it friendly and short)
@@ -44,6 +44,9 @@ Explain in one line what you're about to do, then:
 - *Footage* — "Do you cut your video yourself before sending it?" Yes, already cut — just edit it / No, I send raw
   takes — pick the best ones and remove silences.
 - *Background* (dark style or ask) — "Remove the background behind you?" Yes, always (recommended) / No.
+- *Layout* (dark style or ask) — "How should you appear?" On screen the whole reel: animations on top, captions in the
+  middle, you in the bottom half (recommended, needs background removal) / Classic: alternate full-screen animations
+  and split screens. Save as `layout` = `face` / `classic`.
 - *Music* — No music, voice + sound effects / I'll use my own track (ask for the file path; never download music
   they haven't given you; nothing is bundled for copyright reasons).
 - *B-roll / extras* (white style or ask) — No B-roll / AI B-roll with Higgsfield (needs their Higgsfield account
@@ -53,7 +56,7 @@ Explain in one line what you're about to do, then:
 usual comment keyword (e.g. GUIDE — optional), the tool they usually talk about (default Claude), and a fake brand
 name for demo screens (default Acme.ai). Tell them any of these can be skipped.
 
-**Save** each answer: `python3 $M/settings.py set <key> <value>` (keys: style, speech_language, caption_script,
+**Save** each answer: `python3 $M/settings.py set <key> <value>` (keys: style, layout, speech_language, caption_script,
 caption_direction, keep_english_terms, transcriber, footage, background_removal, music, broll, creator_name,
 cta_keyword, hero_tool, demo_brand, projects_dir).
 

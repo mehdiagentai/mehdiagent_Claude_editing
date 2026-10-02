@@ -27,9 +27,14 @@
 
 - 1080×1920, 30 fps. Scenes are drawn in the scene canvas, then `render.py` shifts graphics down `TOP_SHIFT=90` and
   fades them out above screen y 180 (Instagram covers the top). Never place anything important above scene y 100.
-- **Split beats:** graphics panel 940×≤620 at scene (70,104); the creator below the split line (screen y 858, crop
+- **Face layout (default, `layout: face`):** every beat shows the creator. Graphics box on screen y 186–826: scene
+  y 96–736 at 1:1 (author the card at scene (70,104), 940×≤620), or scene y 96–896 shrunk to 0.8 for beats listed in
+  `FULL` (tall scenes). Cinematic captions centred on screen y 900 at 78 px. The creator cut out of their background,
+  scaled `PRES_SCALE` (.62) and centred, head top at `HEAD_Y` (985), body running off the bottom; the sides of the
+  source frame are feathered so arms never end in a hard line. No-face beats (screen recordings) render as full beats.
+- **Split beats (classic):** graphics panel 940×≤620 at scene (70,104); the creator below the split line (screen y 858, crop
   1080×1062 from `CROP_Y`); caption chip centred on the split line.
-- **Full beats:** UI in the upper area (scene y 110–900), cinematic caption centred around scene y 980–1150, nothing
+- **Full beats (classic, and no-face beats):** UI in the upper area (scene y 110–900), cinematic caption centred around scene y 980–1150, nothing
   below it.
 - Type (`fonts.py`): SF Pro / Inter for UI, New York / Source Serif 4 for editorial serif, SF Mono / JetBrains Mono for
   code, SF Arabic / Noto Sans Arabic for Arabic (Apple fonts on macOS, bundled open fonts elsewhere).
@@ -54,7 +59,8 @@
   3 frames) and never re-animates; groups set per beat in `render.OVERRIDE` (`hl` colours one word, `big` + `color`
   for the payoff — green for the hero's win). Right-to-left languages run the whole line right-to-left, English words
   included, unless the creator chose otherwise.
-- Split beats: a chip on the split line (`#1C1C1E`, `#3A3A3C` edge), 44 px, up to 4 words per group.
+- Face beats: the same cinematic words at 78 px, centred between the graphics and the creator (screen y 900).
+- Split beats (classic): a chip on the split line (`#1C1C1E`, `#3A3A3C` edge), 44 px, up to 4 words per group.
 - No word stamps or labels over a scene (GONE, DONE, NEW, FREE, WOW, banners) — the animation shows it.
 
 ## Sound (`template/audio/sources`, synthesized by `make_sfx.py`)

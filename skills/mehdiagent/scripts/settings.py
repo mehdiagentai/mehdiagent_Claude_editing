@@ -32,6 +32,7 @@ DEFAULTS = {
     "transcriber": "fish",              # fish | openrouter
     "openrouter_model": "google/gemini-2.5-flash",
     "footage": "precut",                # precut (creator already cut it) | raw (pick takes, cut silences)
+    "layout": "face",                   # dark style: face = creator always on screen (graphics top, captions middle, creator bottom) | classic = alternate full-screen and split beats
     "background_removal": True,         # macOS only (Apple Vision)
     "music": None,                      # null = no music, or a path to the creator's own track
     "broll": "none",                    # none | higgsfield | own

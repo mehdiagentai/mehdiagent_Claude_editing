@@ -23,11 +23,14 @@ captions (English terms kept in Latin), background removed, no music: 11 beats, 
    Run `python3 prepare.py` until the word list reads right; words the aligner scored 0 keep their rough time — pin
    them in `MANUAL` from an RMS plot (loudness envelope with word marks) if a graphic lands on them.
 3. **Beats** — set `BEATS` (name, first word index), run `python3 prepare.py` again: it prints each beat with
-   beat-local word onsets. ~11 beats per 35 s; alternate full (graphics only) and split (graphics + creator).
+   beat-local word onsets. ~11 beats per 35 s. Face layout (default): the creator is under every beat, no-face footage
+   goes full screen by itself; classic layout: alternate full (graphics only) and split (graphics + creator).
 4. **Scenes** — design the hook for THIS video first (`~/.claude/skills/mehdiagent/references/hooks.md`, check
    `hooks.py recent`; the example's scythe is not a default), then rewrite `scenes.py`: one function per beat, landings from `at(beat, word)`, the hero
    tool as the "?" tile until its name is spoken. Every rule in SKILL.md and `style.md` applies.
-5. **render.py** — set `FULL` (full-screen beats), `CAPY` (caption centre per full beat), `OVERRIDE` (caption group
+5. **render.py** — face layout: set `FULL` (beats whose scenes use the tall area, shrunk to fit the top box),
+   `OVERRIDE`, and if needed `PRES_SCALE` (creator size) / `HEAD_Y` (head position); it prints which beats had no face
+   and went full screen (`edit/face.json`). Classic layout: set `FULL` (full-screen beats), `CAPY` (caption centre per full beat), `OVERRIDE` (caption group
    sizes per full beat; `hl` = colour one word, `big`/`color` = payoff), `CROP_Y` (top of the presenter crop on the
    1080×1920 frame — hair just under the caption chip; check the preview). Preview:
    `python3 render.py --preview`, `python3 render.py --strip <beat> t1,t2,…`. Read every sheet.

@@ -1,6 +1,6 @@
 ---
 name: reel-dark
-description: mehdiagent DARK style - edit a talking-head video into a 9:16 dark-mode reel (near-black ground, Apple dark colours, recreated app UI with no screenshots, physical no-face hook, cinematic captions in any language incl. right-to-left Arabic, speaker cut out of their background, sound design). Use when the mehdiagent skill routes a video here, or the user asks for "the dark style", "dark reel", "black style", or a revision of a dark reel ("remove the part where I say…", "make X full screen", "show Y instead of Z"). Run the mehdiagent setup first if ~/.mehdiagent/config.json is missing.
+description: mehdiagent DARK style - edit a talking-head video into a 9:16 dark-mode reel (near-black ground, Apple dark colours, recreated app UI with no screenshots, physical hook, cinematic captions in any language incl. right-to-left Arabic, speaker cut out and on screen the whole reel - animations top, captions middle, speaker bottom - sound design). Use when the mehdiagent skill routes a video here, or the user asks for "the dark style", "dark reel", "black style", or a revision of a dark reel ("remove the part where I say…", "make X full screen", "show Y instead of Z"). Run the mehdiagent setup first if ~/.mehdiagent/config.json is missing.
 argument-hint: [video file, or the revision you want on the current reel]
 ---
 
@@ -43,9 +43,14 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
 
 ## Building the reel (both paths)
 
-- **Beat map first.** Start with the hook (`hooks.md`). One row per spoken beat: mode (full/split), surface, action, payoff. ~10–13 beats per 30–35 s,
-  alternate full screen and split (graphics top, creator bottom) at meaningful lines: full for the hook, hero object,
-  numbers, real pages, the reveal; the face for reactions, the name and the CTA. Build an arc: mystery ("?" tile) →
+- **Layout (setting `layout`).** `face` (default): the creator is on screen the whole reel, hook included — graphics
+  on top (screen y 186–826), cinematic captions in the middle (`CAP_Y` 900), the creator cut out and scaled down
+  (`PRES_SCALE` .62) in the bottom half, head top at `HEAD_Y` 985 (measured automatically from the matte). Beats whose
+  footage has no face (screen recordings, B-roll) are detected and rendered full screen. `classic`: alternate full
+  screen and split (graphics top, a 1:1 crop of the creator below the split line).
+- **Beat map first.** Start with the hook (`hooks.md`). One row per spoken beat: surface, action, payoff (classic: also
+  full/split — full for the hook, hero object, numbers, real pages, the reveal; the face for reactions, the name and
+  the CTA). ~10–13 beats per 30–35 s. Build an arc: mystery ("?" tile) →
   tease → reveal (tile flips on the name) → proof → honest caveat → fix → CTA. Mark 1–3 *feeling* lines for a meme
   (`references/memes.md`).
 - **Write `scenes.py`.** Recreate every UI with Pillow (`window()`, `apptile()`, `panel()`, `sf()`, real brand PNGs
@@ -56,7 +61,7 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
 - **Render, mix, verify.** `python3 render.py && python3 mix.py` in the background (wait on
   `grep -qE "^mixed|Traceback" renders/render.log`), then `check_frames.py` (no blank frame, zero ink in the top
   180 px, nothing under the cinematic words), `check_motion.py` (no beat still > 0.6 s), `check_air.py` (raw path),
-  true peak < −1 dBFS on the MP4 (`ebur128=peak=true`). With background removal on, sample 8 split frames and look at
+  true peak < −1 dBFS on the MP4 (`ebur128=peak=true`). With background removal on, sample 8 frames with the creator on screen and look at
   hair, glasses, hands and held props: no room pixels. Fix and re-render until all pass.
 - **Deliver** with `SendUserFile`; list the caption script with uncertain words flagged; offer a README + zip.
 
@@ -85,10 +90,11 @@ Full recipe with every command: `references/workflow-single-video.md`. Short ver
    Check every preview sheet for dark-on-dark elements.
 1. Recreate UI; never screenshot. Real icons, Apple chrome, product-true colours and copy.
 2. **The hook is built for each video** from its own opening line (`mehdiagent/references/hooks.md`) — never the same
-   hook as the last reels, never copied from an example. It is no-face and physical, big (tiles ≥ 280 px, cards ≥ 600 px
-   wide), moving on frame 0, landing on the spoken words. If the creator describes a hook, build exactly that. Tell the
+   hook as the last reels, never copied from an example. It is physical, big (tiles ≥ 280 px, cards ≥ 600 px
+   wide), moving on frame 0 — in the graphics area above the creator (`face` layout) or full screen with no face (`classic`), landing on the spoken words. If the creator describes a hook, build exactly that. Tell the
    creator in one line which hook you chose and why.
-3. Caption click sound on the first and last word of every full-screen caption group; presenter chips stay silent.
+3. Caption click sound on the first and last word of every full-screen caption group; one soft click per caption group
+   in face beats (automatic in `mix.py`); classic presenter chips stay silent.
 4. Full-screen beats: UI in the upper area, cinematic words centred around scene y≈980–1150, nothing below. Graphics
    are shifted down `TOP_SHIFT=90` and faded above screen y 180 (`render.fade_top`) — Instagram covers the top.
 5. Each beat a distinct surface; never replay a screen for another line.
