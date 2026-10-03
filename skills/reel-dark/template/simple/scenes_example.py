@@ -15,7 +15,7 @@ META='#0866FF'
 import json as _j,os as _o
 try:_CFG=_j.load(open(_o.path.expanduser('~/.mehdiagent/config.json')))
 except Exception:_CFG={}
-CREATOR=(_CFG.get('creator_name') or 'creator').lower();DEMO=_CFG.get('demo_brand') or 'Acme.ai'
+CREATOR=(_CFG.get('creator_name') or 'creator').lower();DEMO=_CFG.get('demo_brand') or 'mehdiagent.com'
 def clamp(v):return max(0,min(1,v))
 
 # ---------------------------------------------------------------- shared pieces

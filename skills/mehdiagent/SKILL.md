@@ -54,7 +54,7 @@ Explain in one line what you're about to do, then:
 
 **Round 3 (free text, one message)** — ask for: their name or handle (used as the creator name on screen), their
 usual comment keyword (e.g. GUIDE — optional), the tool they usually talk about (default Claude), and a fake brand
-name for demo screens (default Acme.ai). Tell them any of these can be skipped.
+name for demo screens (default mehdiagent.com). Tell them any of these can be skipped.
 
 **Save** each answer: `python3 $M/settings.py set <key> <value>` (keys: style, layout, speech_language, caption_script,
 caption_direction, keep_english_terms, transcriber, footage, background_removal, music, broll, creator_name,

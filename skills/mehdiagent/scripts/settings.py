@@ -37,7 +37,7 @@ DEFAULTS = {
     "music": None,                      # null = no music, or a path to the creator's own track
     "broll": "none",                    # none | higgsfield | own
     "cta_keyword": "",                  # default comment keyword, e.g. GUIDE
-    "demo_brand": "Acme.ai",             # fictional brand used on demo screens
+    "demo_brand": "mehdiagent.com",       # brand used on demo screens
     "hero_tool": "Claude",              # the tool the reels usually show
     "projects_dir": "~/Desktop/reels",
 }

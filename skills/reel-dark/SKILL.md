@@ -13,7 +13,7 @@ from decoded frames and signal checks; never say you listened.
 `$M` = `~/.claude/skills/mehdiagent/scripts`, `$K` = `~/.claude/skills/reel-dark`.
 **Settings first:** `python3 $M/settings.py show`. If not onboarded, run the `mehdiagent` setup. The settings decide
 language, caption script/direction, transcriber, footage type, background removal, music, CTA keyword, demo brand
-(default **Acme.ai**) and hero tool (default **Claude**). They override every default below.
+(default **mehdiagent.com**) and hero tool (default **Claude**). They override every default below.
 Runs on macOS, Windows and Linux. On a Mac it uses Apple's SF fonts, Apple Color Emoji and Apple Vision for the cut-out;
 elsewhere it uses the bundled open fonts (Inter, Noto Sans Arabic, JetBrains Mono, Source Serif 4), Noto Color Emoji
 and rembg (see `template/fonts.py`, `helpers/personmask_rembg.py`). `MEHDIAGENT_PORTABLE=1` previews that mode on a Mac.
